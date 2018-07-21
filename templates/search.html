@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block back %}
+<a href="javascript:history.back();" class="icon icon-left pull-left"></a>
+{% endblock %}
+{% block content %}
+<style>
+    button{width:100%}
+</style>
+<div class="content">
+    <form action="index.php" method="GET">
+    <div class="content-block-title">搜索</div>
+    <div class="list-block">
+      <ul>
+        <!-- Text inputs -->
+        <li>
+          <div class="item-content">
+            <div class="item-media"><i class="icon icon-form-name"></i></div>
+            <div class="item-inner">
+              <div class="item-title label">关键字</div>
+              <div class="item-input">
+                <input name="searchstr" type="text" placeholder="搜索标题/番号">
+              </div>
+            </div>
+          </div>
+        </li>
+        </ul>
+    </div>
+    <div class="content-block">
+        <div class="row">
+          <div class="col-50">&nbsp;</div>
+          <div class="col-50"><button type="submit" class="button button-big button-fill button-success">提交</button></div>
+        </div>
+      </div>  
+    </form>  
+    <form action="index.php" method="GET">
+            <div class="content-block-title">筛选</div>
+            <div class="list-block">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-name"></i></div>
+                    <div class="item-inner">
+                      <div class="item-title label">分类</div>
+                      <div class="item-input">
+                            <select name="n1">
+                                <option value="">未选择</option>
+                                {% for o in options%}
+                                    <option value="{{o.key}}">{{o.value}}</option>
+                                {% endfor %}
+                            </select>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-name"></i></div>
+                    <div class="item-inner">
+                      <div class="item-title label">子分类</div>
+                      <div class="item-input">
+                            <select name="n2">
+                                <option value="">未选择</option>
+                                {% for o in options%}
+                                    <option value="{{o.key}}">{{o.value}}</option>
+                                {% endfor %}
+                            </select>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                  <div class="col-50">&nbsp;</div>
+                  <div class="col-50"><button type="submit" class="button button-big button-fill button-success">提交</button></div>
+                </div>
+              </div>  
+            </form>  
+</div>
+{% endblock %}

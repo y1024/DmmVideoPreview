@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block back %}
+<a href="?" class="icon icon-home pull-left"></a>
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.fluidplayer.com/v2/current/fluidplayer.min.css" type="text/css"/>
+<script src="https://cdn.fluidplayer.com/v2/current/fluidplayer.js"></script>
+<script src="https://cdn.bootcss.com/lazyloadjs/3.2.2/lazyload.min.js"></script>
+    <div class="list-block">
+        <ul>
+            <li>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title label">排序</div>
+                        <div class="item-input">
+                            <select name="sort">
+                                <option value="date">更新日期</option>
+                                <option value="ranking">人气排序</option>
+                                <option value="saleranking_asc">销量排序</option>
+                                <option value="review_rank">评价排序</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+<div class="content-block">
+    <div class="row">
+        <div class="col-50"><a href="?" class="button button-big button-fill button-light">清空筛选</a></div>
+        <div class="col-50"><a href="search.php" class="button button-big button-fill button-success">高级筛选</a></div>
+    </div>
+</div>
+<div class="content-block-title">第{{page}}页</div>
+{% for d in data%}  
+    <div class="card demo-card-header-pic">
+        <div valign="bottom" class="card-header color-white no-border no-padding">
+            <img class='card-cover' src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs="
+             data-src="{{d.img}}" onload="lzld(this)" />
+        </div>
+        <div class="card-content">
+            <div class="card-content-inner">
+                <p>{{d.title}}</p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a></a>
+            <a data-link="{{d.video}}" class="link viewVideo">观看视频</a>
+        </div>
+    </div>
+{% endfor %}
+    <div class="content-block">
+        <p class="buttons-row"><a onclick="javascript: window.location = '?' + changeUrl('page','{{page > 1 ? page -1 : '#'}}')" class="button button-big button-round">上一页</a><a onclick="javascript: window.location = '?'+ changeUrl('page','{{page > 0 ? page +1 : 2}}');" class="button button-big button-round">下一页</a></p>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script>
+        $(".viewVideo").click(function(){
+            var rand = Math.floor(Math.random()*999);
+            var videoId = 'my-video'+rand;
+            if($("[id^=my-video]").length >0){
+                //$("[id^=my-video]").remove();
+                
+                // var myFluidPlayer = fluidPlayer($("[id^=my-video]").attr("id"));
+                // myFluidPlayer.pause();
+                $("[id^=fluid_video_wrapper_my-video]").remove();
+            }
+            $(this).parent().after('<video id="'+videoId+'" style="width: 100%"><source src="'+$(this).data("link").replace('_sm_','_dmb_')+'" title="高清" type="video/mp4" /><source src="'+$(this).data("link")+'" title="标清" type="video/mp4" /></video>')
+            var myFluidPlayer = fluidPlayer(videoId,
+            {
+                layoutControls: {
+                    fillToContainer: true,
+                    allowDownload:true,
+		            allowTheatre: false,
+                    controlBar: {
+                        autoHide:           true,
+                        autoHideTimeout:    2,
+                        animated:           true
+                    }
+                }
+            });
+            //var myFluidPlayer = fluidPlayer(videoId);
+            myFluidPlayer.play();
+
+        });
+
+        $("[name=sort]").change(function(){
+            //console.log($(this).val());
+            window.location = "?"+changeUrl("sort",$(this).val());
+        });
+
+        function init(){
+            //设置排序默认值
+            $("[name=sort]").val("{{sort}}");
+        }
+        init();
+    </script>
+{% endblock %}

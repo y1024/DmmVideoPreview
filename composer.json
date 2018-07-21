@@ -1,0 +1,6 @@
+{
+    "require": {
+        "jaeger/querylist": "^4.0",
+        "twig/twig": "^2.0"
+    }
+}

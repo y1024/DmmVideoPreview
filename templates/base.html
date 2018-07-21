@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{title}}-Dmm视频预览-岩兔站yantuz.cn</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page page-current">
+            <header class="bar bar-nav">
+                {% block back %}{% endblock %}
+                <h1 class="title">{{title}}</h1>
+            </header>
+            <div class="content">
+              {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <!-- <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script> -->
+    <script>
+      function getUrlVars(url = window.location.href) {
+        var vars = {};
+        var parts = url.replace(/[?&]+([^=&]+)=([^&#]*)/gi,
+          function(m,key,value) {
+            vars[key] = decodeURIComponent(value);
+          }
+        );
+        return vars;
+      }
+
+      function changeUrl(key,value,url = window.location.href){
+        var vals = getUrlVars(url);
+        console.log(vals);
+        vals[key] = value;
+        return $.param(vals);
+      }
+    </script>
+    {% block footer %}{% endblock %}
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?84c82134ffd0c8885be2d1f83802b94b";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>      
+  </body>
+</html>
