@@ -1,11 +1,16 @@
 ## DmmVideoPreview
 DMM（dmm.co.jp）是日本最大的影片商城，其所售影片都提供了1-5分钟的预览片。
-原网站限制国内IP访问，本工具可提取影片图片、视频等，提供在线观看预览片。
+
+本网站可突破原网站的地区限制，提取影片图片、视频等，提供在线观看预览片。
+
+由于预览片只有几分钟，让你彻底摆脱找片2小时，撸片5分钟的尴尬，所有看到的内容都是全片的精华部分。
 
 ## 演示网站
 https://dmm.yzyz.ml
 
 ### 手机扫码访问
+**勿用微信扫码！！！**
+
 ![](https://yantuz.cn/qr/?text=https://dmm.yzyz.ml)
 ### 图示
 ![](https://ws2.sinaimg.cn/large/007452UMly1ftiotmz67bj30dw0nd7hn.jpg)
@@ -19,6 +24,8 @@ https://dmm.yzyz.ml
 ## 环境要求
 * PHP 7.0+
 * Nginx/Apache
+
+建议部署至国外服务器
 
 ## 参考项目
 * [queryList](https://github.com/jae-jae/QueryList)
